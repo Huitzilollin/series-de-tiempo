@@ -1,0 +1,28 @@
+# series-de-tiempo
+x <- 1:25 
+x
+mean(x)
+ls()
+y <- 2:19
+ls()
+x2 <- c(1,2,3,4,5)
+x3 <- c(1.1,1.2,1.3,1.4,1.5)
+y <- seq(8,80,4)
+y1 <- seq(9,90,5)
+length(y1)
+media <- sum(x)/length(x)
+?sum 
+rm(y)
+ls()
+rm(list=ls())
+nse <- c("alto","medio","bajo")
+equipos <- c("bvb","bm","bl")
+x <- rnorm(100)
+plot(x)
+b <- 1:100
+plot(b,x)
+y = x+rnorm(100,mean=50, sd=0.5)
+cor(x,y) 
+rm(list=ls())
+install.packages("readxl")
+library
