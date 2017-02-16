@@ -1,0 +1,80 @@
+install.packages("foreing")
+require(foreign)
+install.packages("readxl")
+library(readxl)
+petroleo<- read_excel("C://Users//Sala-F29//Documents//claseeR//petroleo.xlsx")
+petroleo.ts<-ts(petroleo)
+plot(petroleo.ts,main="serie de tiempo",xlab = "precio", ylab="tiempo")
+?decompose
+petroleo.ts=ts(petroleo,frequency = 5) 
+petroleo.descom<- decompose(petroleo.ts,"additive")
+##graficamos
+
+plot(as.ts(petroleo.descom$seasonal))
+plot(as.ts(petroleo.descom$trend))
+plot(as.ts(petroleo.descom$random))
+plot(petroleo.descom)
+
+windows() 
+par(mfrow = c(3,1))
+plot(as.ts(petroleo.descom$seasonal))
+plot(as.ts(petroleo.descom$trend))
+plot(as.ts(petroleo.descom$random))
+plot(diff(petroleo.descom))
+
+?diff
+#gdp producto interno bruto
+gdpmexico<-read_excel("C://Users//Sala-F29//Documents//claseeR//gdpmexico.xlsx")
+gdpmexico.ts<-ts(gdpmexico)
+plot(gdpmexico.ts,main="serie de tiempo",xlab = "precio", ylab="tiempo")
+gdpmexico.ts=ts(gdpmexico,frequency=8) 
+gdpmexico.descom<- decompose(gdpmexico.ts,"additive")
+
+plot(as.ts(gdpmexico.descom$seasonal))
+plot(as.ts(gdpmexico.descom$trend))
+plot(as.ts(gdpmexico.descom$random))
+plot(gdpmexico.descom)
+windows() 
+par(mfrow=c(3,1))
+plot(as.ts(gdpmexico.descom$seasonal))
+plot(as.ts(gdpmexico.descom$trend))
+plot(as.ts(gdpmexico.descom$random))
+plot(diff(gdpmexico.descom))
+
+#####
+importa<-read_excel("C://Users//Sala-F29//Documents//claseeR//importa.xlsx")
+importa.ts<-ts(importa)
+plot(importa.ts,main="serie de tiempo",xlab = "precio", ylab="tiempo")
+importa.ts=ts(importa,frequency = 7) 
+importa.descom<- decompose(importa.ts,"additive")
+
+plot(as.ts(importa.descom$seasonal))
+plot(as.ts(importa.descom$trend))
+plot(as.ts(importa.descom$random))
+plot(importa.descom)
+windows() 
+par(mfrow=c(3,1))
+plot(as.ts(importa.descom$seasonal))
+plot(as.ts(importa.descom$trend))
+plot(as.ts(importa.descom$random))
+plot(diff(importa.descom))
+
+
+########
+
+mort_rate<-read_excel("C://Users//Sala-F29//Documents//claseeR//mort_rate.xlsx")
+mort_rate.ts<-ts(mort_rate)
+plot(mort_rate.ts,main="serie de tiempo",xlab = "precio", ylab="tiempo")
+mort_rate.ts=ts(mort_rate,frequency=1) 
+mort_rate.descom<- decompose(mort_rate.ts,"additive")
+
+plot(as.ts(mort_rate.descom$seasonal))
+plot(as.ts(mort_rate.descom$trend))
+plot(as.ts(mort_rate.descom$random))
+plot(mort_rate.descom)
+windows() 
+par(mfrow=c(3,1))
+plot(as.ts(mort_rate.descom$seasonal))
+plot(as.ts(mort_rate.descom$trend))
+plot(as.ts(mort_rate.descom$random))
+plot(diff(mort_rate.descom))
