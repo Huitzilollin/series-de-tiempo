@@ -1,0 +1,82 @@
+#crear una lista o secuencia, puede ser creada con seq o una simple lista
+seq(0,15,0.5)
+polizas<- (0:15)
+polizas
+n <- 15
+exito <- 0.25
+prob_5 <- dbinom(5,n,prob=exito)
+prob_5
+prob <- dbinom (polizas,n, prob=0.25)
+prob
+
+##la función cbind permite GRUPAR OBJETOS
+informef<-cbind(polizas, prob)
+informef
+#grafico de las probabilidades
+plot(polizas, prob, type="b", xlab="polizas siniestro")
+#otra forma de graficar"
+plot(polizas, prob, type="l", xlab="polizas")
+points(polizas,prob)
+#cálculo de las probabilidades menores o iguales P[x]
+F<- cumsum(prob)
+F
+#otra forma de cálculo
+Fx3 <- pbinom(3,n,prob=0.25)
+Fx3
+Fx <- pbinom(polizas,n, prob=0.25)
+Fx
+#gráficos de la dis acumulada
+#la probabilidad entre los puntos permanece constante
+informeF <- cbind(polizas, Fx)
+informeF
+plot(polizas, Fx, type="S")
+plot(polizas, Fx, type="b")
+points(polizas, prob, col="Red")
+#cálculo de la media y la varianza
+#E[x]=suma(xi*prob)
+media1=sum(polizas*prob)
+media1
+#empleando los resultados de la dbinom
+media2<- n*0.25
+media2
+#varianza
+segundo <- sum((polizas^2)*prob)
+segundo
+var<-segundo-media1^2
+var#varianza con parametros 
+var1 <- n*0.25*(1-0.25)
+var1
+#var
+var2=sum(((polizas-media1)^2)*prob)
+var2
+#ejemplo para el calculo de percentiles
+#calcule el valor que deja por debajo al 30% los s
+q30<- qbinom(0.3,n,prob=0.25)
+q30
+percentiles<- seq(0,1,by=0.05)
+lpercent<-qbinom(percentiles,n,prob=0.25)
+informe_p<-cbind(percentiles*100,lpercent)
+informe_p
+plot(informe_p,type="b", xlab="percentiles", ylab="siniestros")
+#analizar de los percentiles .. como se comporta...
+#calcular tercer momento
+sesgo<-(1-2*0.25)/(n*0.25*(1-0.25))^0.5
+sesgo
+#obtener las siguientes probabilidades
+#tener 9 siniestros P[x=9]
+nueve<- dbinom(9,n,prob=0.25)
+nueve
+##tener 5 o menos siniestros P[x<=5]
+cinco<- pbinom(5,n,prob=0.25)
+cinco
+##siete
+siete=1-pbinom(7,n, prob=0.25)
+#tener 8 o mas siniestros
+ocho=1-pbinom(7,n, prob=0.25)
+ocho
+#tener al menos 4 y a lo mucho 11 siniestros 
+entre4y11<- pbinom(11,n,prob=0.25)-pbinom(3,n,prob=0.25)
+entre4y11
+#tener entre 1 y 8 siniestros
+entre1y8<- pbinom(7,n,prob=0.25)-pbinom(1,n,prob=0.25)
+entre1y8
